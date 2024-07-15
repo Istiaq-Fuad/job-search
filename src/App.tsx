@@ -3,10 +3,13 @@ import Header from "./components/Header";
 import JobContainer from "./components/JobContainer";
 import { useState } from "react";
 import useJobItems from "./lib/hooks/useJobItems";
+import useDebounce from "./lib/hooks/useDebounce";
 
 function App() {
   const [searchText, setSearchText] = useState("");
-  const {isListLoading, jobItems} = useJobItems(searchText);
+  const debouncedSearchText = useDebounce(searchText, 300);
+
+  const { isListLoading, jobItems } = useJobItems(debouncedSearchText);
 
   return (
     <>
