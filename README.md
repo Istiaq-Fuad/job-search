@@ -1,0 +1,1 @@
+npx json-server --delay 1000 --port 3000 --watch db.json
