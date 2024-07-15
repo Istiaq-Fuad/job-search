@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  background-color: aliceblue;
+}
+
+textarea::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  /* Chrome, Safari, Edge, Opera, All browsers on iOS */
+  width: 7px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  /* Chrome, Safari, Edge, Opera, All browsers on iOS */
+  background-color: #dbdfe4;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  /* Chrome, Safari, Edge, Opera, All browsers on iOS */
+  background-color: #979ca0;
+  transition: all 0.2s;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  /* Chrome, Safari, Edge, Opera, All browsers on iOS */
+  background-color: #787c80;
+}
+
+.custom-height {
+  height: calc(73vh - theme("spacing.10") - theme("spacing.8"));
+  box-sizing: border-box;
+}
