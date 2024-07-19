@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { JobItemDetailsType } from "../types";
 import useActiveJobId from "./useActiveJobId";
 import { useQuery } from "@tanstack/react-query";
@@ -5,12 +6,16 @@ import { useQuery } from "@tanstack/react-query";
 function useActiveJobItem() {
   const activeJobId = useActiveJobId();
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["job-item", activeJobId],
     queryFn: async (): Promise<JobItemDetailsType> => {
       const response = await fetch(
         `http://localhost:3000/jobDetails/${activeJobId}`
       );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
 
       const data = await response.json();
       return data;
@@ -20,11 +25,12 @@ function useActiveJobItem() {
     retry: false,
     enabled: !!activeJobId,
   });
+ 
+  if (error) {
+    toast.error(error.message);
+  }
 
-  const activeJobItem = data;
-  const isItemLoading = isLoading;
-
-  return { activeJobItem, isItemLoading };
+  return { activeJobItem: data, isItemLoading: isLoading } as const;
 }
 
 // function useActiveJobItem() {

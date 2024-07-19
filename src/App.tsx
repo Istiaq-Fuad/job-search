@@ -4,6 +4,7 @@ import JobContainer from "./components/JobContainer";
 import { useState } from "react";
 import useJobItems from "./lib/hooks/useJobItems";
 import useDebounce from "./lib/hooks/useDebounce";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [searchText, setSearchText] = useState("");
@@ -16,6 +17,7 @@ function App() {
       <Header searchText={searchText} setSearchText={setSearchText} />
       <JobContainer jobItems={jobItems} isListLoading={isListLoading} />
       <Footer />
+      <Toaster position="top-right" />
     </>
   );
 }
