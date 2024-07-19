@@ -16,14 +16,14 @@ function JobDetails() {
 
   if (!activeJobItem) {
     return (
-      <div className="flex justify-center items-center text-gray-400 h-full">
+      <div className="col-span-2 w-full flex justify-center items-center text-gray-400 h-full">
         Search for any job
       </div>
     );
   }
 
   return (
-    <>
+    <div className="col-span-2 bg-white h-full min-h-[425px]">
       <div className="relative h-1/3 bg-gray-500 bg-right-bottom bg-cover bg-blend-multiply">
         <img
           className="absolute h-full w-full mix-blend-multiply"
@@ -50,7 +50,7 @@ function JobDetails() {
       <div className="px-10 overflow-y-auto h-2/3 custom-scrollbar">
         <div className="inline-flex mb-4">
           <div className="w-12 flex justify-between items-center mt-4 px-1">
-            <span>{activeJobItem.daysAgo}d</span>
+            <span className="mr-2">{activeJobItem.daysAgo}d</span>
             <BookmarkSimple size={15} className="cursor-pointer inline-block" />
           </div>
           <div className="pt-1.5 pl-4">
@@ -80,7 +80,7 @@ function JobDetails() {
           <CompanyReviews reviews={activeJobItem.reviews} />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

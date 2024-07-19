@@ -8,7 +8,7 @@ function JobListItem({ jobItem }: { jobItem: JobItemType }) {
   return (
     <a href={`#${jobItem.id}`}>
       <li
-        className={`flex justify-between items-center p-3 border-b ${
+        className={`flex justify-between items-center p-[7px] border-b ${
           jobItem.id === activeJobId ? "bg-slate-200" : ""
         }`}
       >

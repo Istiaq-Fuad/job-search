@@ -2,27 +2,30 @@ import { JobItemType } from "../../lib/types";
 import Spinner from "../Spinner";
 import JobListItem from "./JobListItem";
 import SidebarHeader from "./SidebarHeader";
-import PaginationButtons from "./PaginationButtons";
 
 function Sidebar({
+  children,
   jobItems,
   isListLoading,
 }: {
+  children: React.ReactElement;
   jobItems: JobItemType[];
   isListLoading: boolean;
 }) {
   return (
-    <div className="col-span-1 border-r-[1px] border-opacity-10 border-black relative h-full flex flex-col">
+    <div className="col-span-1 min-h-[420px] border-r-[1px] border-opacity-10 border-black relative flex flex-col">
       <SidebarHeader numberOfJobs={jobItems.length} />
-      <ul className="overflow-y-auto custom-height custom-scrollbar">
+      <ul className="h-full">
         {isListLoading && <Spinner />}
 
         {!isListLoading &&
-          jobItems.map((jobItem) => (
-            <JobListItem key={jobItem.id} jobItem={jobItem} />
-          ))}
+          jobItems
+            .slice(0, 8)
+            .map((jobItem) => (
+              <JobListItem key={jobItem.id} jobItem={jobItem} />
+            ))}
       </ul>
-      <PaginationButtons />
+      {children}
     </div>
   );
 }
