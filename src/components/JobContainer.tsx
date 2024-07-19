@@ -1,6 +1,6 @@
 import { JobItemType } from "../lib/types";
-import JobDetails from "./JobDetails";
-import Sidebar from "./Sidebar";
+import JobDetails from "./JobPreview/JobDetails";
+import Sidebar from "./Sidebar/Sidebar";
 
 function JobContainer({
   jobItems,

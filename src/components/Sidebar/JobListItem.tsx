@@ -1,6 +1,6 @@
 import { BookmarkSimple } from "@phosphor-icons/react";
-import { JobItemType } from "../lib/types";
-import useActiveJobId from "../lib/hooks/useActiveJobId";
+import { JobItemType } from "../../lib/types";
+import useActiveJobId from "../../lib/hooks/useActiveJobId";
 
 function JobListItem({ jobItem }: { jobItem: JobItemType }) {
   const activeJobId = useActiveJobId();

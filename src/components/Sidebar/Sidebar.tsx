@@ -1,6 +1,6 @@
 import { CaretUpDown, ArrowLeft, ArrowRight } from "@phosphor-icons/react";
-import { JobItemType } from "../lib/types";
-import Spinner from "./Spinner";
+import { JobItemType } from "../../lib/types";
+import Spinner from "../Spinner";
 import JobListItem from "./JobListItem";
 
 function Sidebar({

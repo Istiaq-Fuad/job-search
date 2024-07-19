@@ -6,8 +6,8 @@ import {
 } from "@phosphor-icons/react";
 import Qualifications from "./Qualifications";
 import CompanyReviews from "./CompanyReviews";
-import Spinner from "./Spinner";
-import useActiveJobItem from "../lib/hooks/useActiveJobItem";
+import Spinner from "../Spinner";
+import useActiveJobItem from "../../lib/hooks/useActiveJobItem";
 
 function JobDetails() {
   const { isItemLoading, activeJobItem } = useActiveJobItem();
