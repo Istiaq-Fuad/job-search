@@ -17,3 +17,7 @@ export type JobItemDetailsType = JobItemType & {
   coverImgURL: string;
   companyURL: string;
 };
+
+export type SortingType = "relevant" | "recent";
+
+export type DirectionType = "next" | "prev";
