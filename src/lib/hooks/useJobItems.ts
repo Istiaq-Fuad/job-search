@@ -1,57 +1,25 @@
-import { JobItemType } from "../types";
-import { useQuery } from "@tanstack/react-query";
+import { useQueries } from "@tanstack/react-query";
+import fetchJobItem from "../fetchJobItem";
 
-function useJobItems(searchText: string) {
-  const { data, isLoading } = useQuery({
-    queryKey: ["job-items", searchText],
-    queryFn: async (): Promise<JobItemType[]> => {
-      const response = await fetch(
-        `http://localhost:3000/jobItems?title_like=${searchText}`
-        // `https://bytegrad.com/course-assets/projects/rmtdev/api/data?search=${searchText}`
-      );
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data = await response.json();
-      return data;
-    },
-    staleTime: 1000 * 60 * 60,
-    refetchOnWindowFocus: false,
-    retry: false,
-    enabled: !!searchText,
+function useJobItems(ids: number[]) {
+  const results = useQueries({
+    queries: ids.map((id) => ({
+      queryKey: ["job-item", id],
+      queryFn: () => fetchJobItem(id),
+      staleTime: 1000 * 60 * 60,
+      refetchOnWindowFocus: false,
+      retry: false,
+      enabled: !!id,
+    })),
   });
 
-  return {
-    jobItems: data || [],
-    isListLoading: isLoading,
-  } as const;
+  const jobItems = results
+    .map((result) => result.data)
+    .filter((jobItem) => jobItem !== undefined);
+
+  const isListLoading = results.some((result) => result.isLoading);
+
+  return { jobItems, isListLoading } as const;
 }
-
-// function useJobItems(searchText: string) {
-//   const [jobItems, setJobItems] = useState<JobItemType[]>([]);
-//   const [isListLoading, setIsListLoading] = useState(false);
-
-//   useEffect(() => {
-//     if (!searchText) return;
-
-//     const fetchData = async () => {
-//       setIsListLoading(true);
-//       const response = await fetch(
-//         `http://localhost:3000/jobItems?title_like=${searchText}`
-//         // `https://bytegrad.com/course-assets/projects/rmtdev/api/data?search=${searchText}`
-//       );
-
-//       const data = await response.json();
-//       setJobItems(data);
-//       setIsListLoading(false);
-//     };
-
-//     fetchData();
-//   }, [searchText]);
-
-//   return {isListLoading, jobItems} as const;
-// }
 
 export default useJobItems;

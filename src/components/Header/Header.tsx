@@ -1,15 +1,12 @@
-import { CaretDown, MagnifyingGlass } from "@phosphor-icons/react";
-import { JobItemType } from "../lib/types";
-import BookmarkedItems from "./BookmarkedItems";
+import { MagnifyingGlass } from "@phosphor-icons/react";
+import BookmarkButton from "./BookmarkButton";
 
 function Header({
   searchText,
   setSearchText,
-  bookmarkedJobs,
 }: {
   searchText: string;
   setSearchText: React.Dispatch<React.SetStateAction<string>>;
-  bookmarkedJobs: JobItemType[];
 }) {
   return (
     <div className="bg-gradient-to-r from-cyan-500 to-blue-500 flex justify-center items-center flex-col h-[25vh]">
@@ -18,11 +15,7 @@ function Header({
           remo<span className="font-bold italic">TIC</span>
         </p>
         <span className="mx-5 opacity-70">|</span>
-        <button>
-          bookmarks{" "}
-          <CaretDown size={15} weight="duotone" className="inline-block" />
-        </button>
-        <BookmarkedItems bookmarkedJobs={bookmarkedJobs} />
+        <BookmarkButton />
       </div>
       <div className="w-2/5 mx-auto relative mb-8">
         <input

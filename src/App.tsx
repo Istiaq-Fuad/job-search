@@ -1,8 +1,8 @@
 import Footer from "./components/Footer";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import JobContainer from "./components/JobContainer";
 import { useState } from "react";
-import useJobItems from "./lib/hooks/useJobItems";
+import useSearchQuery from "./lib/hooks/useSearchQuery";
 import useDebounce from "./lib/hooks/useDebounce";
 import { Toaster } from "react-hot-toast";
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -13,7 +13,7 @@ import { DirectionType, SortingType } from "./lib/types";
 function App() {
   const [searchText, setSearchText] = useState("");
   const debouncedSearchText = useDebounce(searchText, 300);
-  const { isListLoading, jobItems } = useJobItems(debouncedSearchText);
+  const { isListLoading, jobItems } = useSearchQuery(debouncedSearchText);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState<SortingType>("relevant");
 
@@ -49,11 +49,7 @@ function App() {
 
   return (
     <>
-      <Header
-        searchText={searchText}
-        setSearchText={setSearchText}
-        bookmarkedJobs={jobItems}
-      />
+      <Header searchText={searchText} setSearchText={setSearchText} />
       <JobContainer>
         <Sidebar
           handleSortingChange={handleSortingChange}

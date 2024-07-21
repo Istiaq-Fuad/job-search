@@ -1,6 +1,5 @@
 import { JobItemType, SortingType } from "../../lib/types";
-import Spinner from "../Spinner";
-import JobListItem from "./JobListItem";
+import JobList from "../JobList/JobList";
 import SidebarHeader from "./SidebarHeader";
 
 function Sidebar({
@@ -25,14 +24,7 @@ function Sidebar({
         numberOfJobs={numberOfJobs}
         handleSortingChange={handleSortingChange}
       />
-      <ul className="h-full">
-        {isListLoading && <Spinner />}
-
-        {!isListLoading &&
-          jobItems.map((jobItem) => (
-            <JobListItem key={jobItem.id} jobItem={jobItem} />
-          ))}
-      </ul>
+      <JobList jobItems={jobItems} isListLoading={isListLoading} />
       {children}
     </div>
   );
