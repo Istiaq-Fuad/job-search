@@ -43,8 +43,8 @@ function SortingButton({
 }) {
   return (
     <button
-      className={`bg-zinc-800 text-white opacity-60 px-1 py-0.5 rounded-sm ml-2 ${
-        sortBy === buttonText ? "bg-zinc-950" : "bg-zinc-500"
+      className={`text-white opacity-60 px-1 py-0.5 rounded-sm ml-2 ${
+        sortBy === buttonText ? "bg-stone-950" : "bg-zinc-600"
       }`}
       onClick={handleSortingChange}
     >

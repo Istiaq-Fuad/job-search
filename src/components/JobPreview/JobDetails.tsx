@@ -1,5 +1,4 @@
 import {
-  BookmarkSimple,
   ClockClockwise,
   CurrencyCircleDollar,
   MapPin,
@@ -8,6 +7,7 @@ import Qualifications from "./Qualifications";
 import CompanyReviews from "./CompanyReviews";
 import Spinner from "../Spinner";
 import useActiveJobItem from "../../lib/hooks/useActiveJobItem";
+import BookmarkIcon from "../BookmarkIcon";
 
 function JobDetails() {
   const { isItemLoading, activeJobItem } = useActiveJobItem();
@@ -51,7 +51,7 @@ function JobDetails() {
         <div className="inline-flex mb-4">
           <div className="w-12 flex justify-between items-center mt-4 px-1">
             <span className="mr-2">{activeJobItem.daysAgo}d</span>
-            <BookmarkSimple size={15} className="cursor-pointer inline-block" />
+            <BookmarkIcon id={activeJobItem.id} />
           </div>
           <div className="pt-1.5 pl-4">
             <p className="mt-2 mb-3">{activeJobItem.description}</p>

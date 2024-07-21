@@ -13,6 +13,7 @@ import { DirectionType, SortingType } from "./lib/types";
 function App() {
   const [searchText, setSearchText] = useState("");
   const debouncedSearchText = useDebounce(searchText, 300);
+  const { isListLoading, jobItems } = useJobItems(debouncedSearchText);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState<SortingType>("relevant");
 
@@ -31,8 +32,6 @@ function App() {
     setCurrentPage(1);
   };
 
-  const { isListLoading, jobItems } = useJobItems(debouncedSearchText);
-
   const jobItemsSorted = [...jobItems].sort((a, b) => {
     if (sortBy === "relevant") {
       return b.relevanceScore - a.relevanceScore;
@@ -50,7 +49,11 @@ function App() {
 
   return (
     <>
-      <Header searchText={searchText} setSearchText={setSearchText} />
+      <Header
+        searchText={searchText}
+        setSearchText={setSearchText}
+        bookmarkedJobs={jobItems}
+      />
       <JobContainer>
         <Sidebar
           handleSortingChange={handleSortingChange}
