@@ -1,9 +1,10 @@
 import { CaretDown } from "@phosphor-icons/react";
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef, useRef, useState } from "react";
 import useBookmarkContext from "../../lib/hooks/useBookmarkContext";
 import JobList from "../JobList/JobList";
 import toast from "react-hot-toast";
 import { JobItemDetailsType } from "../../lib/types";
+import useOnClickOutside from "../../lib/hooks/useOnClickOutside";
 
 function BookmarkButton() {
   const [open, setOpen] = useState(false);
@@ -12,21 +13,7 @@ function BookmarkButton() {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        e.target instanceof HTMLElement &&
-        !buttonRef.current?.contains(e.target) &&
-        !popoverRef.current?.contains(e.target)
-      ) {
-        setOpen(false);
-      }
-    };
-
-    document.addEventListener("click", handleClickOutside);
-
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
+  useOnClickOutside([buttonRef, popoverRef], () => setOpen(false));
 
   return (
     <>
