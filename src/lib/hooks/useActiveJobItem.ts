@@ -1,10 +1,10 @@
 import toast from "react-hot-toast";
-import useActiveJobId from "./useActiveJobId";
 import { useQuery } from "@tanstack/react-query";
 import fetchJobItem from "../fetchJobItem";
+import useActiveJobIdContext from "./useActiveJobIdContext";
 
 function useActiveJobItem() {
-  const activeJobId = useActiveJobId();
+  const { activeJobId } = useActiveJobIdContext();
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["job-item", activeJobId],

@@ -1,9 +1,9 @@
 import { JobItemType } from "../../lib/types";
-import useActiveJobId from "../../lib/hooks/useActiveJobId";
 import BookmarkIcon from "../BookmarkIcon";
+import useActiveJobIdContext from "../../lib/hooks/useActiveJobIdContext";
 
 function JobListItem({ jobItem }: { jobItem: JobItemType }) {
-  const activeJobId = useActiveJobId();
+  const { activeJobId } = useActiveJobIdContext();
 
   return (
     <a href={`#${jobItem.id}`}>
