@@ -1,5 +1,5 @@
 import { MagnifyingGlass } from "@phosphor-icons/react";
-import BookmarkButton from "./BookmarkButton";
+import BookmarkButton from "./BookmarkedJobs";
 
 function Header({
   searchText,
