@@ -1,31 +1,15 @@
-import { JobItemType, SortingType } from "../../lib/types";
+import useJobItemsContext from "../../lib/hooks/useJobItemsContext";
 import JobList from "../JobList/JobList";
+import PaginationButtons from "./PaginationButtons";
 import SidebarHeader from "./SidebarHeader";
 
-function Sidebar({
-  children,
-  jobItems,
-  numberOfJobs,
-  isListLoading,
-  handleSortingChange,
-  sortBy,
-}: {
-  children: React.ReactElement;
-  jobItems: JobItemType[];
-  numberOfJobs: number;
-  isListLoading: boolean;
-  handleSortingChange: (sortBy: SortingType) => void;
-  sortBy: SortingType;
-}) {
+function Sidebar() {
+  const { slicedJobItems, isListLoading } = useJobItemsContext();
   return (
     <div className="col-span-1 min-h-[420px] border-r-[1px] border-opacity-10 border-black relative flex flex-col">
-      <SidebarHeader
-        sortBy={sortBy}
-        numberOfJobs={numberOfJobs}
-        handleSortingChange={handleSortingChange}
-      />
-      <JobList jobItems={jobItems} isListLoading={isListLoading} />
-      {children}
+      <SidebarHeader />
+      <JobList jobItems={slicedJobItems} isListLoading={isListLoading} />
+      <PaginationButtons />
     </div>
   );
 }

@@ -1,15 +1,9 @@
 import { CaretUpDown } from "@phosphor-icons/react";
 import { SortingType } from "../../lib/types";
+import useJobItemsContext from "../../lib/hooks/useJobItemsContext";
 
-function SidebarHeader({
-  numberOfJobs,
-  handleSortingChange,
-  sortBy,
-}: {
-  numberOfJobs: number;
-  handleSortingChange: (sortBy: SortingType) => void;
-  sortBy: SortingType;
-}) {
+function SidebarHeader() {
+  const { numberOfJobs, sortBy, handleSortingChange } = useJobItemsContext();
   return (
     <div className="flex justify-between items-center p-2 shadow h-10">
       <p className="block">
