@@ -18,7 +18,7 @@ function PaginationButtons() {
         )}
         {currentPage < totalNumberOfPages && (
           <button
-            className="px-2 py-1 bg-neutral-300 rounded-xl place-items-end justify-self-end"
+            className="px-2 py-1 bg-neutral-300 rounded-xl ml-auto"
             onClick={() => handlePageChange("next")}
           >
             page {currentPage + 1}
