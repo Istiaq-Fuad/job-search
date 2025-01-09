@@ -142,10 +142,6 @@ Contributions are welcome! Please follow these steps:
 
 5. Open a pull request.
 
-## License
-
-This project is licensed under the [MIT License](https://chatgpt.com/c/LICENSE).
-
 ## Acknowledgments
 
 - Icons by [Phosphor Icons](https://phosphoricons.com/)
